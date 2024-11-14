@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import UserView from './userView';
+import MaintainerView from './MaintainerView';
 
 function App() {
+  const [view, setView] = useState('landing');
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {view === 'landing' && (
+        <div className="landing-page">
+          <h1>Welcome to Smart Bike Rental</h1>
+          <button onClick={() => setView('user')}>User</button>
+          <button onClick={() => setView('maintainer')}>Maintainer</button>
+        </div>
+      )}
+      {view === 'user' && <UserView />}
+      {view === 'maintainer' && <MaintainerView />}
     </div>
   );
 }
